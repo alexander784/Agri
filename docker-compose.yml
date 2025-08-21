@@ -1,0 +1,13 @@
+services:
+  db:
+    container_name: postgres_container
+    image: postgres:14
+    ports:
+      - "5000:5432"
+    environment:
+      POSTGRES_DB: db
+      POSTGRES_USER: agri_db
+      POSTGRES_PASSWORD: alexa
+    volumes:
+      - ./postgres/data:/var/lib/postgresql/data
+ 
