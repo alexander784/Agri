@@ -1,0 +1,111 @@
+version: 2
+
+sources:
+  - name: dev
+    description: "Raw data tables for the agriculture and e-commerce analytics project."
+    database: db
+    schema: dev
+
+    tables:
+      - name: raw_weather_data
+        description: "Stores raw weather data collected from various cities for analytics."
+        columns:
+          - name: id
+            description: "Unique identifier for each weather record."
+            tests:
+              - not_null
+              - unique
+          - name: city
+            description: "City where the weather data was collected."
+            tests:
+              - not_null
+          - name: temperature
+            description: "Recorded temperature at the time of measurement."
+          - name: weather_descriptions
+            description: "Detailed weather condition such as 'Sunny', 'Cloudy', or 'Rainy'."
+          - name: wind_speed
+            description: "Measured speed of the wind in km/h."
+          - name: time
+            description: "Timestamp of when the weather data was recorded."
+            tests:
+              - not_null
+          - name: inserted_at
+            description: "Timestamp when the record was inserted into the database."
+          - name: utc_offset
+            description: "UTC offset for the given city at the time of data collection."
+
+      - name: customers
+        description: "Stores customer information including contact details and demographics."
+        columns:
+          - name: id
+            description: "Unique identifier for each customer."
+            tests:
+              - not_null
+              - unique
+          - name: firstname
+            description: "Customer's first name."
+          - name: lastname
+            description: "Customer's last name."
+          - name: email
+            description: "Customer's email address."
+            tests:
+              - not_null
+          - name: phone
+            description: "Customer's phone number."
+          - name: birthday
+            description: "Customer's date of birth."
+          - name: gender
+            description: "Customer's gender (e.g., Male, Female, Other)."
+          - name: address
+            description: "Street address of the customer."
+          - name: zip
+            description: "Zip code or postal code of the customer's location."
+          - name: city
+            description: "City where the customer lives."
+      - name: products
+        description: "List of products available for purchase with details such as price and category."
+        columns:
+          - name: id
+            description: "Unique identifier for each product."
+            tests:
+              - not_null
+              - unique
+          - name: title
+            description: "Product title or name."
+            tests:
+              - not_null
+          - name: price
+            description: "Price of the product."
+          - name: description
+            description: "Detailed description of the product."
+          - name: category
+            description: "Category to which the product belongs."
+
+      - name: orders
+        description: "Stores information about customer orders, linking customers to products."
+        columns:
+          - name: id
+            description: "Unique identifier for each order record."
+            tests:
+              - not_null
+              - unique
+          - name: order_id
+            description: "The business-facing order identifier for tracking purposes."
+            tests:
+              - not_null
+          - name: customer_id
+            description: "ID of the customer placing the order. References customers.id."
+            tests:
+              - not_null
+          - name: product_id
+            description: "ID of the product being ordered. References products.id."
+            tests:
+              - not_null
+          - name: quantity
+            description: "Quantity of the product ordered."
+            tests:
+              - not_null
+          - name: date
+            description: "Date when the order was placed."
+          - name: city
+            description: "City where the order is to be delivered."

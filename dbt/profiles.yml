@@ -1,0 +1,11 @@
+my_project:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: db
+      port: 5432
+      user: "agri_db"
+      password: "alexa"
+      dbname: db
+      schema: dev
