@@ -1,11 +1,9 @@
 version: 2
-
 sources:
   - name: dev
     description: "Raw data tables for the agriculture and e-commerce analytics project."
     database: db
     schema: dev
-
     tables:
       - name: raw_weather_data
         description: "Stores raw weather data collected from various cities for analytics."
@@ -26,14 +24,13 @@ sources:
           - name: wind_speed
             description: "Measured speed of the wind in km/h."
           - name: time
-            description: "Timestamp of when the weather data was recorded."
+            description: "Timestamp when the weather data was recorded."
             tests:
               - not_null
           - name: inserted_at
             description: "Timestamp when the record was inserted into the database."
           - name: utc_offset
             description: "UTC offset for the given city at the time of data collection."
-
       - name: customers
         description: "Stores customer information including contact details and demographics."
         columns:
@@ -80,7 +77,6 @@ sources:
             description: "Detailed description of the product."
           - name: category
             description: "Category to which the product belongs."
-
       - name: orders
         description: "Stores information about customer orders, linking customers to products."
         columns:

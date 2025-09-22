@@ -8,4 +8,7 @@ my_project:
       user: "agri_db"
       password: "alexa"
       dbname: db
-      schema: dev
+      schema: analytics
+      threads: 1
+      
+

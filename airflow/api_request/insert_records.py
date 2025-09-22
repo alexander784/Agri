@@ -17,7 +17,7 @@ DB_CONFIG = {
 }
 
 def connect_to_db():
-    """Establish a connection to the PostgreSQL database."""
+    """Connecting to PostgreSQL db."""
     try:
         logger.info("Connecting to the database...")
         conn = psycopg2.connect(**DB_CONFIG)

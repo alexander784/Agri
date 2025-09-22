@@ -1,16 +1,10 @@
-WITH source AS (
-    SELECT * 
-    FROM {{ source('dev', 'products') }}
-),
+{{ config(materialized='view') }}
 
-renamed AS (
-    SELECT
-        id AS product_id,
-        INITCAP(TRIM(title)) AS product_name,
-        ROUND(price::numeric, 2) AS price,
-        TRIM(description) AS description,
-        LOWER(TRIM(category)) AS category
-    FROM source
-)
-
-SELECT * FROM renamed
+SELECT
+    id,
+    title,
+    price,
+    description,
+    category
+FROM {{ source('dev', 'products') }}
+WHERE title IS NOT NULL AND price > 0
